@@ -26,7 +26,13 @@ export default function Leaderboard() {
   setLoading(true)
   const { data: portfolios } = await supabase
     .from('portfolio_totals')
-    .select('*, profiles(username)')
+.select(`
+  user_id,
+  cash,
+  starting_capital,
+  total_value,
+  profiles(username)
+`)
 
   if (!portfolios) { setLoading(false); return }
 
